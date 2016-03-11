@@ -1,9 +1,11 @@
 package cn.edu.bupt;
 
 /**
- * Created by bob on 2016/3/9 0009.
- * 1. Two Sum
+ * Created by FirenzesEagle on 2016/3/9 0009.
  *
+ */
+
+/* 1. Two Sum
  Given an array of integers, return indices of the two numbers such that they add up to a specific target.
 
  You may assume that each input would have exactly one solution.
@@ -14,6 +16,7 @@ package cn.edu.bupt;
  Because nums[0] + nums[1] = 2 + 7 = 9,
  return [0, 1].
  */
+
 public class Two_Sum {
     public int[] twoSum(int[] nums, int target) {
         int[] result = {0, 0};
