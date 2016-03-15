@@ -10,10 +10,6 @@ package cn.edu.bupt;
  */
 public class Longest_Substring_Without_Repeating_Characters {
 
-    public static void main(String[] args) {
-        System.out.println(new Longest_Substring_Without_Repeating_Characters().lengthOfLongestSubstring("abcabcbb"));
-    }
-
     public int lengthOfLongestSubstring(String s) {
         //如果是空串
         if (s.length() == 0) {
