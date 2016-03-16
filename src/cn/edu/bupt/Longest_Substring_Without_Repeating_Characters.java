@@ -39,7 +39,7 @@ public class Longest_Substring_Without_Repeating_Characters {
             if (resLen > s.length() - start) {
                 return resLen;
             } else {
-                return s.length() - resLen;
+                return s.length() - start;
             }
         }
     }
