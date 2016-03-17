@@ -1,5 +1,7 @@
 package cn.edu.bupt;
 
+import java.util.HashMap;
+
 /**
  * Created by FirenzesEagle on 2016/3/11 0011.
  */
@@ -10,37 +12,24 @@ package cn.edu.bupt;
  */
 public class Longest_Substring_Without_Repeating_Characters {
 
+    public static void main(String[] args) {
+        System.out.println(new Longest_Substring_Without_Repeating_Characters().lengthOfLongestSubstring("bbbbb"));
+    }
+
     public int lengthOfLongestSubstring(String s) {
-        //如果是空串
-        if (s.length() == 0) {
-            return 0;
-        }
-        //如果只有一个元素
-        else if (s.length() == 1) {
-            return 1;
-        } else {
-            //cache数组用于保存新出现的字符的下标
-            int[] cache = new int[256];
-            int start = 0, resLen = 0;
-            for (int i = 0; i < s.length(); i++) {
-                //如果某个字符已经出现过
-                if (cache[s.charAt(i)] >= start) {
-                    //判断是否是目前最长的无重复字母子串
-                    if (i - start > resLen) {
-                        resLen = i - start;
-                    }
-                    //从这个字母首次出现的位置+1，重新进行扫描判断
-                    start = cache[s.charAt(i)] + 1;
-                }
-                //更新当前字符的下标
-                cache[s.charAt(i)] = i;
+        if (s.length() == 0) return 0;
+        //keep a hashmap which stores the characters in string as keys and their positions as values
+        HashMap<Character, Integer> map = new HashMap<Character, Integer>();
+        int max = 0;
+        for (int i = 0, j = 0; i < s.length(); ++i) {
+            if (map.containsKey(s.charAt(i))) {
+                //if found in hashmap that value,then update j i.e pointer to the right of the same character last found.
+                j = Math.max(j, map.get(s.charAt(i)) + 1);
             }
-            //如果原始字符串s没有重复字符
-            if (resLen > s.length() - start) {
-                return resLen;
-            } else {
-                return s.length() - start;
-            }
+            //else put in map and get max pointer update with the current longest string
+            map.put(s.charAt(i), i);
+            max = Math.max(max, i - j + 1);
         }
+        return max;
     }
 }
