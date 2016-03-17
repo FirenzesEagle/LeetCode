@@ -11,11 +11,6 @@ import java.util.HashMap;
  For example, the longest substring without repeating letters for "abcabcbb" is "abc", which the length is 3. For "bbbbb" the longest substring is "b", with the length of 1.
  */
 public class Longest_Substring_Without_Repeating_Characters {
-
-    public static void main(String[] args) {
-        System.out.println(new Longest_Substring_Without_Repeating_Characters().lengthOfLongestSubstring("abcabcbb"));
-    }
-
     public int lengthOfLongestSubstring(String s) {
         if (s.length() == 0) return 0;
         //使用HashMap来存储字符串，Key存储单个字符，Value存储字符在字符串中所在的位置
