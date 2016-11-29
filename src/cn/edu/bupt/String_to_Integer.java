@@ -13,15 +13,40 @@ Notes: It is intended for this problem to be specified vaguely (ie, no given inp
  */
 public class String_to_Integer {
     public int myAtoi(String str) {
-        StringBuilder sb = new StringBuilder();
-        if ("".equals(str) || "+".equals(str) || "-".equals(str)) {
+        // 1. null or empty string
+        if (str == null || str.length() == 0) {
             return 0;
         }
-        for (int i = 0; i < str.length(); i++) {
-            if (str.charAt(i) >= '0' && str.charAt(i) <= '9'){
-                sb.append(str.charAt(i));
+        // 2. whitespaces
+        str = str.trim();
+
+        // 3. +/- sign
+        boolean positive = true;
+        int i = 0;
+        if (str.charAt(0) == '+') {
+            i++;
+        } else if (str.charAt(0) == '-') {
+            positive = false;
+            i++;
+        }
+        // 4. calculate real value
+        double temp = 0;
+        for (; i < str.length(); i++) {
+            int digit = str.charAt(i) - '0';
+            if (digit < 0 || digit > 9)
+                break;
+            // 5. handle min & max
+            if (positive){
+                temp = 10 * temp + digit;
+                if (temp > Integer.MAX_VALUE)
+                    return Integer.MAX_VALUE;
+            } else {
+                temp = 10 * temp - digit;
+                if (temp < Integer.MIN_VALUE)
+                    return Integer.MIN_VALUE;
             }
         }
-        return Integer.parseInt(sb.toString());
+        int result = (int) temp;
+        return result;
     }
 }
